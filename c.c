@@ -2,6 +2,7 @@
 #include <unistd.h> // Inclusion de la bibliothèque pour les fonctions d'écriture et de gestion de la mémoire
 
 // Fonction pour écrire une chaîne de caractères dans la sortie standard et mettre à jour la longueur
+
 void put_str(char *str, int *len)
 {
     if (!str)	// si str et nul
@@ -11,6 +12,7 @@ void put_str(char *str, int *len)
 }
 
 // Fonction pour écrire un nombre dans une base donnée dans la sortie standard et mettre à jour la longueur
+
 void put_digit(long long int nbr, int base, int *len)
 {
     char *hexa = "0123456789abcdef"; // hexa et = as [0123456789abcdef]
@@ -25,6 +27,7 @@ void put_digit(long long int nbr, int base, int *len)
 }
 
 // Fonction principale pour émuler la fonction printf
+
 int ft_printf(const char *format, ...)
 {
     int len; // Variable pour suivre la longueur de la sortie
