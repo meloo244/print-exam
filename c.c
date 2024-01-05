@@ -67,4 +67,3 @@ Les boucles : Observe comment les boucles while et la récursivité sont utilis�
 Applicabilité : Comprends dans quel contexte ce code peut être utilisé, par exemple, pour formater une sortie similaire à printf.
 
 */
-//
