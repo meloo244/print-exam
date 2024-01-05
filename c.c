@@ -30,23 +30,23 @@ int ft_printf(const char *format, ...)
     int len; // Variable pour suivre la longueur de la sortie
     va_list ptr; // Variable pour gérer la liste d'arguments variables
 
-    len = 0;
+    len = 0; // pas oublie d initialise len as 0
     va_start(ptr, format); // Initialisation de la liste d'arguments variables
     while (*format)
     {
-        if ((*format == '%') && *(format + 1))
+        if ((*format == '%') && *(format + 1)) // si format de '%' et format + 1
         {
-            format++;
-            if (*format == 's')
+            format++; // incrementation format
+            if (*format == 's') // si format et == as S
                 put_str(va_arg(ptr, char *), &len); // Appel de la fonction put_str avec l'argument de type chaîne de caractères
-            else if (*format == 'd')
+            else if (*format == 'd') // si format et == as D
                 put_digit((long long int)va_arg(ptr, int), 10, &len); // Appel de la fonction put_digit avec l'argument de type entier décimal
-            else if (*format == 'x')
+            else if (*format == 'x') // si format et == as X
                 put_digit((long long int)va_arg(ptr, unsigned int), 16, &len); // Appel de la fonction put_digit avec l'argument de type entier hexadécimal
         }
-        else
-            len += write(1, format, 1);
-        format++;
+        else // sinon
+            len += write(1, format, 1); // len += write de format
+        format++; // pas oublie d incremente format
     }
     return (va_end(ptr), len); // Finalisation de l'utilisation de la liste d'arguments variables et retour de la longueur totale
 }
