@@ -15,15 +15,15 @@ void put_str(char *str, int *len)
 
 void put_digit(long long int nbr, int base, int *len)
 {
-    char *hexa = "0123456789abcdef"; // hexa et = as [0123456789abcdef]
+    char *hexa = "0123456789abcdef"; // hexa et = as [0123456789abcdef] 0 A 9 ET ABCDEF
     if (nbr < 0) // si nbr et plus petit que 0
     {
         nbr = nbr * -1; // nbr et egale a nbr de "* -1"
         *len += write(1, "-", 1); // pointeur de len et "+=" as write de "-"
     }
-    if (nbr >= base) // si nbr et plus grand egale ">=" de base
-        put_digit((nbr / base), base, len); // ont rappel put-digit
-    *len += write(1, &hexa[nbr % base], 1); // pointeur de len += as write de &hexa[nbr % base]
+    if (nbr >= base) // si nbr et plus grand ou egale ">=" de base
+        put_digit((nbr / base), base, len); // ont rappel put-digit de "nbr" divise "/" par "base" de base et len
+    *len += write(1, &hexa[nbr % base], 1); // pointeur de len += as write de hexa de nbr pourcentage de base "&hexa[nbr % base]"
 }
 
 // Fonction principale pour émuler la fonction printf
@@ -35,16 +35,16 @@ int ft_printf(const char *format, ...)
 
     len = 0; // pas oublie d initialise len as 0
     va_start(ptr, format); // Initialisation de la liste d'arguments variables
-    while (*format)
+    while (*format) // Tant que pointeur de format
     {
-        if ((*format == '%') && *(format + 1)) // si format de '%' et format + 1
+        if ((*format == '%') && *(format + 1)) // si pointeur de format et == as '%' et pointeur de (format + 1)
         {
             format++; // incrementation format
-            if (*format == 's') // si format et == as S
+            if (*format == 's') // si pointeur de format et == as S
                 put_str(va_arg(ptr, char *), &len); // Appel de la fonction put_str avec l'argument de type chaîne de caractères
-            else if (*format == 'd') // si format et == as D
+            else if (*format == 'd') // si pointeur de format et == as D
                 put_digit((long long int)va_arg(ptr, int), 10, &len); // Appel de la fonction put_digit avec l'argument de type entier décimal
-            else if (*format == 'x') // si format et == as X
+            else if (*format == 'x') // si pointeur format et == as X
                 put_digit((long long int)va_arg(ptr, unsigned int), 16, &len); // Appel de la fonction put_digit avec l'argument de type entier hexadécimal
         }
         else // sinon
